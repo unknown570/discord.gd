@@ -1,3 +1,14 @@
+-----------
+
+Forked from https://github.com/3ddelano/discord.gd
+
+Added some features that original repository lacked
+
+###### I will probably set this as private soon but idk
+
+
+------------
+
 Discord.gd
 =========================================
 ###### (Get it from Godot Asset Library - https://godotengine.org/asset-library/asset/1010)
