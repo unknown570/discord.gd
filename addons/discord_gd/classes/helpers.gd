@@ -19,6 +19,21 @@ static func is_valid_str(value) -> bool:
 	return is_str(value) and value.length() > 0
 
 
+# Returns unix time, Where extra is... extra time! (in seconds), use 0 for current time
+static func make_unix_float(extra:int=0) -> float:
+	var new_unix = int(Time.get_unix_time_from_system()) + extra
+	
+	return new_unix
+
+
+# Converts given unix to ISO 8601 String
+static func unix_to_iso(value:int) -> String:
+	var datetime = Time.get_datetime_dict_from_unix_time(value)
+	var new_iso = '%s-%02d-%02dT%02d:%02d:%02d' % [datetime.year, datetime.month, datetime.day, datetime.hour, datetime.minute, datetime.second]
+	
+	return new_iso
+
+
 # Return a ISO 8601 timestamp as a String
 static func make_iso_string(datetime: Dictionary = Time.get_datetime_dict_from_system(true)) -> String:
 	var iso_string = '%s-%02d-%02dT%02d:%02d:%02d' % [datetime.year, datetime.month, datetime.day, datetime.hour, datetime.minute, datetime.second]

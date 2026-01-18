@@ -377,6 +377,25 @@ func unban_member(guild_id: String, user_id: String):
 	return res
 
 
+func set_member_nickname(guild_id:String, user_id:String, content:String):
+	var con = {nick = content} # Where content is what user's nickname will be set to
+	var res = await _send_request('/guilds/%s/members/%s' % [guild_id, user_id], con, HTTPClient.METHOD_PATCH)
+	return res
+
+
+func timeout_member(guild_id:String, user_id:String, args:int):
+	var out = Helpers.unix_to_iso(Helpers.make_unix_float(args))
+	var con = {communication_disabled_until = out} # Where args is length of timeout (in seconds)
+	var res = await _send_request('/guilds/%s/members/%s' % [guild_id, user_id], con, HTTPClient.METHOD_PATCH)
+	return res
+
+
+func untimeout_member(guild_id:String, user_id:String,):
+	var con = {communication_disabled_until = null}
+	var res = await _send_request('/guilds/%s/members/%s' % [guild_id, user_id], con, HTTPClient.METHOD_PATCH)
+
+
+
 func permissions_for(user_id: String, channel_id: String):
 	# Permissions for a user in a channel
 	if not channels.has(channel_id):
