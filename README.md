@@ -4,7 +4,7 @@ Forked from https://github.com/3ddelano/discord.gd
 
 Added some features that original plugin lacked
 
-###### I will probably set this repository as private soon but idk
+###### I will probably ~~set this repository as private~~ remove this soon but idk
 
 
 ------------
