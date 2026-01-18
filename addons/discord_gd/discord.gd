@@ -155,6 +155,16 @@ func delete(message: Message):
 	var res = await _send_message_request(message, '', {}, HTTPClient.METHOD_DELETE)
 	return res
 
+
+func pin(channel_id:String, msg_id:String , pin:bool):
+	if pin: # If pin is true, pins givven message
+		var res = await _send_request('/channels/%s/messages/pins/%s' % [channel_id, msg_id], {}, HTTPClient.METHOD_PUT)
+		return res
+	else: # And if pin is false, it unpins given message 
+		var res = await _send_request('/channels/%s/messages/pins/%s' % [channel_id, msg_id], {}, HTTPClient.METHOD_DELETE)
+		return res
+
+
 #endregion
 #
 #
