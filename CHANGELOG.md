@@ -1,8 +1,11 @@
 Changelog
 ============
 
-This is a high-level changelog for each released versions of the plugin.
-For a more detailed list of past and incoming changes, see the commit history.
+- Added `set_nickname`, `timeout_member`, `untimeout_member`, `pin`, `unpin` to `DiscordBot`
+- Added `make_unix_float`, `unix_to_iso` to `Helpers`
+- Fixed `delete_thread` in `DiscordBot`
+
+============
 
 1.2.4
 -----

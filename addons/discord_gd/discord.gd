@@ -156,13 +156,13 @@ func delete(message: Message):
 	return res
 
 
-func pin(channel_id:String, msg_id:String , pin:bool):
-	if pin: # If pin is true, pins givven message
-		var res = await _send_request('/channels/%s/messages/pins/%s' % [channel_id, msg_id], {}, HTTPClient.METHOD_PUT)
-		return res
-	else: # And if pin is false, it unpins given message 
-		var res = await _send_request('/channels/%s/messages/pins/%s' % [channel_id, msg_id], {}, HTTPClient.METHOD_DELETE)
-		return res
+func pin(channel_id:String, msg_id:String):
+	var res = await _send_request('/channels/%s/messages/pins/%s' % [channel_id, msg_id], {}, HTTPClient.METHOD_PUT)
+	return res
+
+func unpin(channel_id:String, msg_id:String):
+	var res = await _send_request('/channels/%s/messages/pins/%s' % [channel_id, msg_id], {}, HTTPClient.METHOD_DELETE)
+	return res
 
 
 #endregion
@@ -174,10 +174,15 @@ func pin(channel_id:String, msg_id:String , pin:bool):
 
 func start_thread(message: Message, thread_name: String, duration: int = 60 * 24) -> Dictionary:
 	var payload = {'name': thread_name, 'auto_archive_duration': duration}
-	var res = await _send_request(
-		'/channels/%s/messages/%s/threads' % [message.channel_id, message.id], payload
-	)
+	var res = await _send_request('/channels/%s/messages/%s/threads' % 
+	[message.channel_id, message.id], payload, HTTPClient.METHOD_POST)
 
+	return res
+
+func delete_thread(channel_id:String, msg_id:String):
+	var res = await _send_request('/channels/%s/messages/%s/threads' % 
+	[channel_id, msg_id], {}, HTTPClient.METHOD_DELETE)
+	
 	return res
 
 #endregion
